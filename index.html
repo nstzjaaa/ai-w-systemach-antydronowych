@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI w detekcji dronów — A.Warlewska</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@150,800&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+  <main class="hero">
+
+    <!--lewa polowa-->
+    <section class="hero__left">
+      <header class="hero__top">
+        <span class="label">PROJEKT</span>
+        <span class="label">A.WARLEWSKA</span>
+      </header>
+
+      <div class="hero__content">
+        <h1 class="hero__title">AI W DETEKCJI DRONÓW</h1>
+        <div class="hero__desc">
+          <p>Strona opisuje, jak sieci neuronowe w systemach wojskowych rozpoznają typ drona na podstawie sygnałow radarowych.</p>
+          <ul>
+            Problematyka zawiera:
+            detekcję (wykrycie, że coś jest w powietrzu),</li>
+            klasyfikację (ocena, czy dany obiekt to dron, zakłócemie lub np. ptak),</li>
+            identyfikację (typ/model drona).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!--prawa polowa-->
+    <section class="hero__right">
+      <img class="hero__img" src="samolot.png" alt="Samolot w locie">
+
+      <a href="#projekt" class="enter">
+        <svg class="enter__star" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#fff" stroke-width="5"/>
+          <circle cx="50" cy="50" r="16" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="19.1 6" stroke-dashoffset="-3"/>
+          <line x1="50" y1="2" x2="50" y2="98" stroke="#fff" stroke-width="1.5"/>
+          <line x1="2" y1="50" x2="98" y2="50" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="4" fill="#fff"/>
+        </svg>
+        <span class="enter__text">ENTER</span>
+      </a>
+
+      <span class="label hero__date">11.2026</span>
+    </section>
+
+  </main>
+
+  <!--sekcje (nakladanie sie)-->
+  <div id="projekt" class="stack">
+
+    <section class="panel" style="--i: 0">
+      <div class="panel__head">
+        <span class="panel__num">01</span>
+        <h2 class="panel__title">RADAR</h2>
+      </div>
+        <div class="panel__body">
+        <span class="panel__tag">[ JAK RADAR WIDZI DRONA ]</span>
+        <div class="panel__text">
+
+          <h3>Zasada działania radaru</h3>
+          <p>Radar wysyła w przestrzeń falę elektromagnetyczną. Kiedy fala trafi na obiekt, jej część odbija się i wraca do anteny jako echo. Z czasu powrotu echa radar oblicza odległość do celu, z kierunku anteny jego położenie, a z przesunięcia częstotliwości echa, czyli efektu Dopplera, prędkość, z jaką cel się zbliża lub oddala.</p>
+          <p>Siła echa zależy przede wszystkim od skutecznej powierzchni odbicia, oznaczanej skrótem RCS (Radar Cross Section). Duży samolot odbija dużo energii i widać go z daleka. Mały obiekt z tworzywa sztucznego odbija bardzo niewiele.</p>
+
+          <h3>Dlaczego dron jest trudnym celem</h3>
+          <p>Drony mają bardzo małą powierzchnię odbicia. W paśmie X jest ona porównywalna z ptakiem, rzędu 10 cm². Do tego latają nisko, wolno i blisko ziemi, czyli w strefie, gdzie radar odbiera mnóstwo ech od budynków, drzew i terenu. Takie odbicia nazywa się clutterem. Drony określa się jako cele LSS: low, slow, small, czyli nisko, wolno i małe.</p>
+          <p>Klasyczne radary obrony powietrznej projektowano do wykrywania szybkich samolotów i rakiet. Wolny, mały obiekt bywa przez nie odfiltrowywany jako szum albo mylony z ptakiem. To największy problem współczesnej obrony przeciwdronowej.</p>
+
+          <h3>Pasma częstotliwości</h3>
+          <p>Radary przeciwdronowe pracują najczęściej w wyższych pasmach, takich jak X, Ku czy K. Krótsza fala lepiej odbija się od małych elementów, np. łopat śmigieł, i daje dokładniejszy obraz ruchu. Ceną jest mniejszy zasięg i większa wrażliwość na deszcz.</p>
+
+          <h3>Mikro-Doppler: podpis śmigieł</h3>
+          <p>Kadłub drona porusza się jako całość i daje jedno główne przesunięcie Dopplera. Śmigła jednak wirują tysiące razy na minutę. Jedna strona łopaty zbliża się do radaru, a druga oddala. W efekcie wokół głównego sygnału pojawiają się drobne, regularne modulacje częstotliwości. To zjawisko nazywa się efektem mikro-Dopplera.</p>
+          <p>Mikro-Doppler działa jak podpis obiektu. Ptak macha skrzydłami wolno i nieregularnie. Dron daje szybkie, powtarzalne błyski od łopat. Z takiej sygnatury da się odczytać prędkość obrotową wirników, rozmiar śmigieł, a czasem nawet ich liczbę. To właśnie te informacje pozwalają później rozpoznać typ drona.</p>
+
+          <h3>Radar a inne sensory</h3>
+          <p>Metody pasywne nasłuchują sygnału radiowego między operatorem a dronem. Jeśli dron leci autonomicznie po zaprogramowanej trasie, nie wysyła takiego sygnału i staje się dla nich niewidoczny. Radar nie zależy od tej komunikacji, bo sam oświetla cel. Działa też w nocy, we mgle i przy zachmurzeniu, gdzie kamery mają problem.</p>
+          <p>Ma jednak swoje ograniczenia. Nowoczesne radary wykrywają małe drony z odległości rzędu kilometrów, ale żeby sklasyfikować je po mikro-Dopplerze, potrzebują mocniejszego sygnału, czyli mniejszego dystansu i dłuższej obserwacji celu.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="--i: 1">
+      <div class="panel__head">
+        <span class="panel__num">02</span>
+        <h2 class="panel__title">SIEĆ NEURONOWA</h2>
+      </div>
+        <div class="panel__body">
+        <span class="panel__tag">[ OD SYGNAŁU DO DECYZJI ]</span>
+        <div class="panel__text">
+
+          <h3>Trzy zadania AI</h3>
+          <p>W obronie przeciwdronowej sztuczna inteligencja wykonuje trzy kolejne zadania. Detekcja odpowiada na pytanie, czy w powietrzu w ogóle coś jest. Klasyfikacja ocenia, czy wykryty obiekt to dron, ptak czy zakłócenie. Identyfikacja określa konkretny typ lub model drona. Od wyniku zależy reakcja: inaczej traktuje się drona rekreacyjnego, a inaczej amunicję krążącą.</p>
+
+          <h3>Sygnał zamienia się w obraz</h3>
+          <p>Surowe echo radarowe to ciąg liczb, z którym sieci neuronowe radzą sobie słabo. Dlatego najpierw przetwarza się je krótkoczasową transformatą Fouriera (STFT). Sygnał dzieli się na krótkie fragmenty i dla każdego oblicza, jakie częstotliwości zawiera. Wynikiem jest spektrogram: obraz, na którym oś pozioma to czas, oś pionowa to częstotliwość Dopplera, a jasność to siła sygnału.</p>
+          <p>Na spektrogramie dron wygląda jak jasna linia kadłuba otoczona regularnymi, pionowymi błyskami od łopat śmigieł. Ptak daje wolniejszy, falujący wzór. Zadanie rozpoznania drona sprowadza się więc do rozpoznawania obrazów, w którym sieci neuronowe są bardzo skuteczne.</p>
+
+          <h3>Jak działa sieć konwolucyjna (CNN)</h3>
+          <p>Sieć konwolucyjna analizuje obraz małymi filtrami, które przesuwa po całym spektrogramie. Pierwsze warstwy wykrywają proste wzory, takie jak krawędzie, linie i powtarzalność. Kolejne łączą je w cechy coraz bardziej złożone, np. odstęp między błyskami, który zależy od prędkości wirników. Na końcu warstwa klasyfikująca zamienia te cechy na prawdopodobieństwa, na przykład: dron 92%, ptak 6%, zakłócenie 2%.</p>
+          <p>Sieć nie dostaje gotowych reguł. Uczy się na tysiącach przykładowych spektrogramów z podpisanymi etykietami i sama dochodzi do tego, które wzory odróżniają poszczególne klasy.</p>
+
+          <h3>Problem: brak danych</h3>
+          <p>Największą trudnością jest zdobycie danych treningowych. Pomiary radarowe dronów są drogie i czasochłonne, a dane wojskowe są niejawne. Dlatego badacze generują dane syntetyczne w symulatorach albo sztucznie powiększają zbiory, np. dodając do nagrań szum. Dzięki temu model uczy się działać także przy słabym sygnale.</p>
+
+          <h3>Badania Politechniki Mediolańskiej</h3>
+          <p>Tym właśnie problemem zajęła się praca magisterska z Politecnico di Milano z 2025 roku (T. Capacci, promotor M. Manzoni, współpromotor E. Campo). Autor zauważył, że radar często nie potrafi odróżnić drona od ptaka, i zaproponował klasyfikację spektrogramów z sygnaturą mikro-Dopplera przy użyciu głębokiego uczenia.</p>
+          <p>Prawdziwych pomiarów było za mało, więc autor zbudował symulator, który generuje realistyczne dane radarowe. Uwzględnia on ruch łopat śmigieł, szum termiczny i zakłócenia od tła. Następnie porównał kilka architektur, w tym sieci konwolucyjne i rekurencyjne, w połączeniu z różnymi metodami wstępnego przetwarzania. Najlepsze okazały się sieci konwolucyjne.</p>
+          <p>Kluczowy wniosek: trening na mieszance danych rzeczywistych i symulowanych poprawił zdolność modelu do uogólniania. Końcowy model osiągnął 94,8% skuteczności na prawdziwych pomiarach, zarówno w wykrywaniu drona, jak i w rozpoznawaniu jego konkretnego modelu. Autor zastosował też technikę wizualizacji, która pokazuje, na które fragmenty spektrogramu sieć „patrzy”, podejmując decyzję.</p>
+
+          <h3>Kamery i sygnały radiowe</h3>
+          <p>Te same zasady stosuje się do innych sensorów. Na obrazach z kamer stosuje się modele detekcji obiektów z rodziny YOLO, które w czasie rzeczywistym zaznaczają drona na klatce filmu. Ich największym wyzwaniem jest odróżnienie drona od ptaka o podobnym rozmiarze i wyglądzie. Sygnały radiowe między dronem a pilotem też zamienia się na spektrogramy i klasyfikuje sieciami CNN. W badaniach testowano nawet tanie systemy złożone ze zwykłego komputera, radia programowalnego (SDR) i anteny.</p>
+
+          <h3>Fuzja sensorów</h3>
+          <p>Żaden sensor nie jest idealny. Radar widzi w nocy, ale myli drony z ptakami. Kamera dobrze rozpoznaje kształt, ale nie działa we mgle. Detektor radiowy nie zauważy drona autonomicznego. Dlatego systemy wojskowe łączą dane z wielu źródeł, a AI scala je w jedną, pewniejszą decyzję. Dzięki temu jest mniej fałszywych alarmów, a reakcja przychodzi szybciej.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="--i: 2">
+      <div class="panel__head">
+        <span class="panel__num">03</span>
+        <h2 class="panel__title">WŁOCHY</h2>
+      </div>
+            <div class="panel__body">
+        <span class="panel__tag">[ SYSTEMY WOJSKOWE ]</span>
+        <div class="panel__text">
+
+          <h3>ADRIAN – Elettronica</h3>
+          <p>ADRIAN (Anti-Drone Interception, Acquisition and Neutralisation) to system antydronowy opracowany przez włoską firmę Elettronica, specjalizującą się w walce elektronicznej. Początkowo powstawał na pilne zamówienie włoskiego Ministerstwa Spraw Wewnętrznych do ochrony obiektów, instalacji i miejsc publicznych przed dronami. Później trafił do włoskich sił zbrojnych.</p>
+          <p>System ma budowę modułową, więc konfigurację dobiera się do zadania, warunków i budżetu. Może działać na stałym stanowisku albo na pojeździe, np. gąsienicowym BV206S7 armii włoskiej.</p>
+
+          <h3>Jak działa ADRIAN</h3>
+          <p>Do wykrywania i identyfikacji dronów ADRIAN łączy kilka sensorów: wielospektralny radar, optronikę, czyli kamery dzienne i termowizyjne, oraz czujniki akustyczne. System ustala położenie drona i analizuje zagrożenie w czasie rzeczywistym, a producent podkreśla niski poziom fałszywych alarmów.</p>
+          <p>Do neutralizacji służy zagłuszacz, który przerywa łącze radiowe między dronem a operatorem oraz odbiór sygnałów nawigacji satelitarnej GNSS. Bez nich dron nie może lecieć ani po zaprogramowanej trasie, ani pod kontrolą pilota. Zagłuszacz działa reaktywnie, po wykryciu zagrożenia, albo zapobiegawczo, nie dopuszczając drona do chronionej strefy. Celem jest skierowanie drona w bezpieczne miejsce i wymuszenie lądowania. Zagłuszanie „siłowe” jest ostatecznością.</p>
+
+          <h3>Snow Leopard</h3>
+          <p>Snow Leopard to mobilna wersja systemu ADRIAN, przystosowana do działania w ekstremalnych warunkach i oparta na zaawansowanych algorytmach AI. Elettronica zaprezentowała ją w marcu 2022 roku podczas ćwiczeń NATO „White Fox” w Sestriere w północno-zachodnich Włoszech. Szczególną uwagę poświęcono interfejsowi operatora, tak by dało się z niego korzystać w trudnych warunkach.</p>
+
+          <h3>Wersja morska i fregata FREMM</h3>
+          <p>W październiku 2022 roku, na targach Euronaval, Elettronica pokazała morską wersję ADRIAN do ochrony okrętów i jednostek straży morskiej. Kolejnym krokiem był system antydronowy firmy ELT Group zamontowany na fregacie FREMM włoskiej marynarki wojennej i używany w misjach operacyjnych. Marina Militare stała się pierwszą flotą w Europie z takim rozwiązaniem zintegrowanym z systemem walki i sensorami okrętu. Algorytmy AI przyspieszają w nim wykrywanie, klasyfikację i identyfikację nawet bardzo małych dronów.</p>
+
+          <h3>Leonardo – ACUS-E i Nerio</h3>
+          <p>Leonardo, największy włoski koncern zbrojeniowy, rozwija pełny łańcuch obrony przeciwdronowej: od wykrycia przez śledzenie i identyfikację po neutralizację. Jeden z jego systemów służy we włoskich siłach zbrojnych pod nazwą ACUS-E i jest też używany przez armię kanadyjską. Za wykrywanie wzrokowe odpowiada rodzina Nerio, czyli systemy elektrooptyczne i termowizyjne do dalekiego wykrywania, śledzenia i identyfikacji celów. Według Leonardo AI usprawnia wykrywanie, poprawia klasyfikację i wspiera ocenę zagrożenia.</p>
+          <p>Leonardo kieruje też unijnym projektem E-CUAS (European Counter Unmanned Aerial System). Jego celem jest zaprojektowanie i sprawdzenie kompletnego systemu wykrywania i blokowania dronów w trzech scenariuszach: stacjonarnym, mobilnym i polowym.</p>
+
+          <h3>Michelangelo Dome</h3>
+          <p>Michelangelo Dome to zaprezentowana przez Leonardo pod koniec 2025 roku architektura obrony oparta na AI. Ma łączyć sensory i środki rażenia z różnych platform w jedną sieć, która wykrywa, klasyfikuje i neutralizuje zagrożenia: od pocisków hipersonicznych po roje dronów. Zamiast klasycznego układu „jeden sensor – jedno działo” powstaje sieć, w której dowolny sensor może wskazać cel dowolnemu efektorowi.</p>
+          <p>Według zapowiedzi pierwsze elementy mają trafić do Włoch w 2026 roku, a pełną gotowość system ma osiągnąć w 2028 roku. Leonardo planuje też przetestować część rozwiązań na Ukrainie do końca 2026 roku, głównie w zakresie zwalczania dronów. Prezes Roberto Cingolani podkreślał, że mimo automatyzacji ostateczna decyzja o otwarciu ognia pozostaje w rękach człowieka.</p>
+
+          <h3>Hystrix</h3>
+          <p>W lutym 2026 roku Leonardo zaprezentował rodzinę Hystrix: lądowe systemy przeciwlotnicze i antydronowe Hystrix 76 ADS i Hystrix 40 ADS. Powstały na bazie morskich armat kalibru 76 mm i 40 mm. Mają zwalczać drony, amunicję krążącą i nisko lecące cele w ramach architektury Michelangelo Dome. To przykład tego, że oprócz zagłuszania potrzebne są też środki kinetyczne, czyli fizyczne zestrzelenie celu.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="--i: 3">
+      <div class="panel__head">
+        <span class="panel__num">04</span>
+        <h2 class="panel__title">ŹRÓDŁA</h2>
+      </div>
+      <div class="panel__body">
+
+        <span class="panel__tag">[ 01 RADAR ]</span>
+        <ul class="panel__list sources">
+          <li><a href="https://discovery.ucl.ac.uk/id/eprint/10139175/7/Ritchie_Bird_Drone%20Chapter%20v13.pdf" target="_blank">https://discovery.ucl.ac.uk/id/eprint/10139175/7/Ritchie_Bird_Drone%20Chapter%20v13.pdf</a></li>
+          <li><a href="https://www.scielo.br/j/jmoea/a/bKyX54S8ZjFSX3vYVkgDqdf/" target="_blank">https://www.scielo.br/j/jmoea/a/bKyX54S8ZjFSX3vYVkgDqdf/</a></li>
+          <li><a href="https://arxiv.org/pdf/2402.04368" target="_blank">https://arxiv.org/pdf/2402.04368</a></li>
+          <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6695688/" target="_blank">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6695688/</a></li>
+          <li><a href="https://www.everythingrf.com/community/drone-detection-radars-how-radar-systems-detect-track-and-classify-uavs" target="_blank">https://www.everythingrf.com/community/drone-detection-radars-how-radar-systems-detect-track-and-classify-uavs</a></li>
+        </ul>
+
+        <span class="panel__tag">[ 02 SIEĆ NEURONOWA ]</span>
+        <ul class="panel__list sources">
+          <li><a href="https://www.politesi.polimi.it/handle/10589/240107" target="_blank">https://www.politesi.polimi.it/handle/10589/240107</a></li>
+          <li><a href="https://arxiv.org/pdf/2402.05909" target="_blank">https://arxiv.org/pdf/2402.05909</a></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6891421/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC6891421/</a></li>
+          <li><a href="https://arxiv.org/html/2406.18624" target="_blank">https://arxiv.org/html/2406.18624</a></li>
+        </ul>
+
+        <span class="panel__tag">[ 03 WŁOCHY ]</span>
+        <ul class="panel__list sources">
+          <li><a href="https://www.army-technology.com/projects/adrian-anti-drone-system-italy/" target="_blank">https://www.army-technology.com/projects/adrian-anti-drone-system-italy/</a></li>
+          <li><a href="https://www.joint-forces.com/defence-equipment-news/51720-elettronica-presents-snow-leopard-version-of-adrian" target="_blank">https://www.joint-forces.com/defence-equipment-news/51720-elettronica-presents-snow-leopard-version-of-adrian</a></li>
+          <li><a href="https://www.navalnews.com/event-news/euronaval-2022/2022/10/elettronica-presents-adrian-naval-c-uas-at-euronaval/" target="_blank">https://www.navalnews.com/event-news/euronaval-2022/2022/10/elettronica-presents-adrian-naval-c-uas-at-euronaval/</a></li>
+          <li><a href="https://www.edrmagazine.eu/seafuture-2025-elt-group-ai-based-c-uas-on-board-italys-frigate-a-first-step-towards-fremm-evo-iews" target="_blank">https://www.edrmagazine.eu/seafuture-2025-elt-group-ai-based-c-uas-on-board-italys-frigate-a-first-step-towards-fremm-evo-iews</a></li>
+          <li><a href="https://www.defensenews.com/native/Leonardo/2026/07/10/detect-track-identify-defeat-leonardos-integrated-counter-drone-ecosystem/" target="_blank">https://www.defensenews.com/native/Leonardo/2026/07/10/detect-track-identify-defeat-leonardos-integrated-counter-drone-ecosystem/</a></li>
+          <li><a href="https://armyrecognition.com/news/army-news/2026/italys-leonardo-unveils-hystrix-air-defence-system-to-counter-drones-and-loitering-munitions" target="_blank">https://armyrecognition.com/news/army-news/2026/italys-leonardo-unveils-hystrix-air-defence-system-to-counter-drones-and-loitering-munitions</a></li>
+          <li><a href="https://theprint.in/tech/leonardo-unveils-ai-driven-michelangelo-dome-system-to-defend-cities/2793974" target="_blank">https://theprint.in/tech/leonardo-unveils-ai-driven-michelangelo-dome-system-to-defend-cities/2793974</a></li>
+        </ul>
+
+      </div>
+    </section>
+
+  </div>
+    <script>
+    // po odświeżeniu zawsze startuj od strony głównej
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname);
+    }
+    window.scrollTo(0, 0);
+
+    const enter = document.querySelector('.enter');
+
+    enter.addEventListener('click', function (e) {
+      e.preventDefault();                                   // zatrzymuje zwykły skok linku
+      document.body.classList.remove('locked');             // odblokowuje przewijanie
+      document.querySelector('#projekt').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

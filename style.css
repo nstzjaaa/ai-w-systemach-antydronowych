@@ -1,0 +1,278 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  background: #f1f1f5;
+  padding: 13px 23px;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+}
+
+/*karta glowna*/
+.hero {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 26px);
+  min-height: 420px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/*PROJEKT / A.WARLEWSKA / 11.2026*/
+.label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/*lewa polowa*/
+.hero__left {
+  position: relative;
+  flex: 0 0 50%;
+  background: #000;
+  padding: 16px 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero__top { display: flex; justify-content: space-between; }
+.hero__content { margin-bottom: 10%; }
+
+.hero__title {
+  font-family: 'Anybody', sans-serif;
+  font-stretch: 150%;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.hero__desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/*prawa polowa-zdj*/
+.hero__right {
+  position: relative;
+  flex: 0 0 50%;
+  overflow: hidden;
+  background: #222;
+}
+
+.hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  transform: scale(-1.65, 1.65);   /* odbicie lustrzane + powiekszenie */
+  transform-origin: 56% 46.5%;
+  display: block;
+}
+
+/*ENTER + snajper*/
+.enter {
+  position: absolute;
+  top: 55%;                         
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #fff;
+  z-index: 2;
+}
+
+.enter__star {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.6s ease;
+}
+
+.enter:hover .enter__star { transform: rotate(45deg); }
+
+.enter__text {
+  font-family: 'Anybody', sans-serif;
+  font-stretch: 150%;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+/*DATA*/
+.hero__date {
+  position: absolute;
+  right: 20px;
+  bottom: 16px;
+  z-index: 2;
+}
+
+/*telefon?*/
+@media (max-width: 700px) {
+  .hero { flex-direction: column; height: auto; }
+  .hero__left, .hero__right { flex: none; height: 50vh; }
+}
+
+/*plynne przewijanie*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*kolejna sekcja*/
+.section {
+  min-height: 100vh;
+  margin-top: 13px;
+  background: #000;
+  color: #fff;
+  padding: 60px 23px;
+}
+
+.section__title {
+  font-family: 'Anybody', sans-serif;
+  font-stretch: 150%;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+
+.section__text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/*blokada przewijania*/
+body.locked {
+  overflow: hidden;
+}
+
+/*nakladanie sie sekcji */
+.stack {
+  --head: 72px;                 /*wys. paska*/
+  margin-top: 13px;
+}
+
+/*paski jeden po drugim */
+.panel {
+  display: contents;
+}
+
+/*pasek przykleja sie do gory*/
+.panel__head {
+  position: sticky;
+  top: calc(var(--i) * var(--head));   /*paski kolejno*/
+  z-index: 2;
+  height: var(--head);
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 16px 23px 0;
+  background: #000;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.panel__num,
+.panel__title {
+  font-family: 'Anybody', sans-serif;
+  font-stretch: 150%;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/*tresc przewija sie pod paskami*/
+.panel__body {
+  background: #000;
+  color: #fff;
+  padding: 20px 23px 80px 133px;
+}
+
+/* sekcja 4 dojezdza do samej gory*/
+.panel:last-child .panel__body {
+  min-height: calc(100vh - 4 * var(--head));
+}
+
+.panel__tag {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  margin-bottom: 18px;
+}
+
+.panel__list {
+  list-style: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/*tekst w sekcjach*/
+.panel__text {
+  max-width: 620px;
+}
+
+.panel__text h3 {
+  font-family: 'Anybody', sans-serif;
+  font-stretch: 150%;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 28px 0 8px;
+}
+
+.panel__text h3:first-child {
+  margin-top: 0;
+}
+
+.panel__text p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+/*zrodla linki*/
+.sources {
+  font-size: 10px;
+  margin-bottom: 36px;
+}
+
+.sources a {
+  color: #fff;
+  text-decoration: none;
+  word-break: break-all;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sources a:hover {
+  border-bottom-color: #fff;
+}
+
+/*telefon? */
+@media (max-width: 700px) {
+  .panel__head { grid-template-columns: 50px 1fr; }
+  .panel__num,
+  .panel__title { font-size: 20px; }
+  .panel__body { padding-left: 23px; }
+}
+
