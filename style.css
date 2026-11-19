@@ -1,6 +1,10 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #f1f1f5;
   padding: 13px 23px;
@@ -8,7 +12,7 @@ body {
   color: #fff;
 }
 
-/*karta glowna*/
+/* ===== KARTA GŁÓWNA ===== */
 .hero {
   display: flex;
   width: 100%;
@@ -18,7 +22,7 @@ body {
   overflow: hidden;
 }
 
-/*PROJEKT / A.WARLEWSKA / 11.2026*/
+/* ===== PROJEKT / A.WARLEWSKA / 11.2026 ===== */
 .label {
   font-family: 'Open Sans', sans-serif;
   font-size: 10px;
@@ -29,7 +33,7 @@ body {
   text-transform: uppercase;
 }
 
-/*lewa polowa*/
+/* ===== LEWA POŁOWA ===== */
 .hero__left {
   position: relative;
   flex: 0 0 50%;
@@ -60,7 +64,7 @@ body {
   line-height: 1.4;
 }
 
-/*prawa polowa-zdj*/
+/* ===== PRAWA POŁOWA – ZDJĘCIE ===== */
 .hero__right {
   position: relative;
   flex: 0 0 50%;
@@ -75,15 +79,15 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: right center;
-  transform: scale(-1.65, 1.65);   /* odbicie lustrzane + powiekszenie */
+  transform: scale(-1.65, 1.65);   /* odbicie lustrzane + powiększenie */
   transform-origin: 56% 46.5%;
   display: block;
 }
 
-/*ENTER + snajper*/
+/* ===== ENTER + CELOWNIK ===== */
 .enter {
   position: absolute;
-  top: 55%;                         
+  top: 55%;                         /* im więcej, tym niżej */
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -112,7 +116,7 @@ body {
   line-height: 1;
 }
 
-/*DATA*/
+/* ===== DATA ===== */
 .hero__date {
   position: absolute;
   right: 20px;
@@ -120,62 +124,33 @@ body {
   z-index: 2;
 }
 
-/*telefon?*/
-@media (max-width: 700px) {
-  .hero { flex-direction: column; height: auto; }
-  .hero__left, .hero__right { flex: none; height: 50vh; }
-}
-
-/*plynne przewijanie*/
-html {
-  scroll-behavior: smooth;
-}
-
-/*kolejna sekcja*/
-.section {
-  min-height: 100vh;
-  margin-top: 13px;
-  background: #000;
-  color: #fff;
-  padding: 60px 23px;
-}
-
-.section__title {
-  font-family: 'Anybody', sans-serif;
-  font-stretch: 150%;
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 0.04em;
-  margin-bottom: 20px;
-}
-
-.section__text {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 11px;
-  line-height: 1.6;
-  max-width: 500px;
-}
-
-/*blokada przewijania*/
+/* ===== BLOKADA PRZEWIJANIA DO KLIKNIĘCIA W CELOWNIK ===== */
+html:has(body.locked),
 body.locked {
   overflow: hidden;
+  height: 100%;
 }
 
-/*nakladanie sie sekcji */
+body.locked {
+  touch-action: none;           /* telefon: blokuje przewijanie palcem */
+  overscroll-behavior: none;    /* bez "odbijania" strony */
+}
+
+/* ===== SEKCJE NAKŁADAJĄCE SIĘ ===== */
 .stack {
-  --head: 72px;                 /*wys. paska*/
+  --head: 72px;                 /* wysokość paska z numerem i tytułem */
   margin-top: 13px;
 }
 
-/*paski jeden po drugim */
+/* paski wszystkich sekcji mogą układać się jeden pod drugim */
 .panel {
   display: contents;
 }
 
-/*pasek przykleja sie do gory*/
+/* pasek z numerem i tytułem – przykleja się u góry */
 .panel__head {
   position: sticky;
-  top: calc(var(--i) * var(--head));   /*paski kolejno*/
+  top: calc(var(--i) * var(--head));
   z-index: 2;
   height: var(--head);
   display: grid;
@@ -198,14 +173,14 @@ body.locked {
   letter-spacing: 0.02em;
 }
 
-/*tresc przewija sie pod paskami*/
+/* treść sekcji – przewija się pod paskami */
 .panel__body {
   background: #000;
   color: #fff;
   padding: 20px 23px 80px 133px;
 }
 
-/* sekcja 4 dojezdza do samej gory*/
+/* ostatnia sekcja musi być na tyle wysoka, żeby jej pasek dojechał na miejsce */
 .panel:last-child .panel__body {
   min-height: calc(100vh - 4 * var(--head));
 }
@@ -225,7 +200,7 @@ body.locked {
   line-height: 1.6;
 }
 
-/*tekst w sekcjach*/
+/* ===== TEKST W SEKCJACH ===== */
 .panel__text {
   max-width: 620px;
 }
@@ -251,7 +226,7 @@ body.locked {
   margin-bottom: 10px;
 }
 
-/*zrodla linki*/
+/* ===== LINKI W ŹRÓDŁACH ===== */
 .sources {
   font-size: 10px;
   margin-bottom: 36px;
@@ -268,11 +243,55 @@ body.locked {
   border-bottom-color: #fff;
 }
 
-/*telefon? */
-@media (max-width: 700px) {
-  .panel__head { grid-template-columns: 50px 1fr; }
-  .panel__num,
-  .panel__title { font-size: 20px; }
-  .panel__body { padding-left: 23px; }
+/* ===== DOSTĘPNOŚĆ: widoczne zaznaczenie przy nawigacji klawiszem Tab ===== */
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
 }
 
+/* ===== TELEFON ===== */
+@media (max-width: 700px) {
+  body {
+    padding: 0;                 /* bez szarej ramki dookoła */
+    background: #000;
+  }
+
+  .hero {
+    flex-direction: column;
+    height: 100svh;             /* dokładnie cały ekran telefonu */
+    min-height: 0;
+    box-shadow: none;
+  }
+
+  .hero__left {
+    flex: none;                 /* czarna część tak wysoka, jak tekst */
+    padding: 20px 20px 28px;
+    gap: 40px;
+  }
+
+  .hero__content {
+    margin-bottom: 0;
+  }
+
+  .hero__right {
+    flex: 1;                    /* zdjęcie wypełnia resztę ekranu */
+  }
+
+  .stack {
+    margin-top: 0;
+  }
+
+  .panel__head {
+    grid-template-columns: 50px 1fr;
+    padding: 16px 20px 0;
+  }
+
+  .panel__num,
+  .panel__title {
+    font-size: 20px;
+  }
+
+  .panel__body {
+    padding: 20px 20px 60px;
+  }
+}
