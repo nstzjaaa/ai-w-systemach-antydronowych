@@ -207,19 +207,39 @@
     </section>
 
   </div>
-    <script>
+      <script>
     // po odświeżeniu zawsze startuj od strony głównej
     if (location.hash) {
       history.replaceState(null, '', location.pathname);
     }
     window.scrollTo(0, 0);
 
+    // telefon: blokuje przesuwanie palcem, dopóki strona jest zablokowana
+    function blokujDotyk(e) {
+      e.preventDefault();
+    }
+    document.addEventListener('touchmove', blokujDotyk, { passive: false });
+
+    // odblokowanie przewijania (myszka, klawiatura i palec)
+    function odblokuj() {
+      document.body.classList.remove('locked');
+      document.removeEventListener('touchmove', blokujDotyk, { passive: false });
+    }
+
+    // kliknięcie (lub Enter) na celowniku: odblokuj i zjedź do sekcji
     const enter = document.querySelector('.enter');
 
     enter.addEventListener('click', function (e) {
-      e.preventDefault();                                   // zatrzymuje zwykły skok linku
-      document.body.classList.remove('locked');             // odblokowuje przewijanie
+      e.preventDefault();
+      odblokuj();
       document.querySelector('#projekt').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // nawigacja klawiaturą: gdy Tab wejdzie w coś poniżej strony głównej, też odblokuj
+    document.addEventListener('focusin', function (e) {
+      if (!e.target.closest('.hero')) {
+        odblokuj();
+      }
     });
   </script>
 

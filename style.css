@@ -6,23 +6,22 @@ html {
 }
 
 body {
-  background: #f1f1f5;
-  padding: 13px 23px;
+  background: #000;
+  padding: 0;
   font-family: 'Open Sans', sans-serif;
   color: #fff;
 }
 
-/* ===== KARTA GŁÓWNA ===== */
+/*strona glowna*/
 .hero {
   display: flex;
   width: 100%;
-  height: calc(100vh - 26px);
+  height: 100vh;
   min-height: 420px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
-/* ===== PROJEKT / A.WARLEWSKA / 11.2026 ===== */
+/*PROJEKT, A.WARLEWSKA, 11.2026*/
 .label {
   font-family: 'Open Sans', sans-serif;
   font-size: 10px;
@@ -33,7 +32,7 @@ body {
   text-transform: uppercase;
 }
 
-/* ===== LEWA POŁOWA ===== */
+/*lewa polowa*/
 .hero__left {
   position: relative;
   flex: 0 0 50%;
@@ -64,7 +63,7 @@ body {
   line-height: 1.4;
 }
 
-/* ===== PRAWA POŁOWA – ZDJĘCIE ===== */
+/*prawa polowa*/
 .hero__right {
   position: relative;
   flex: 0 0 50%;
@@ -84,7 +83,7 @@ body {
   display: block;
 }
 
-/* ===== ENTER + CELOWNIK ===== */
+/*enter i snajper*/
 .enter {
   position: absolute;
   top: 55%;                         /* im więcej, tym niżej */
@@ -116,7 +115,7 @@ body {
   line-height: 1;
 }
 
-/* ===== DATA ===== */
+/*data*/
 .hero__date {
   position: absolute;
   right: 20px;
@@ -124,30 +123,24 @@ body {
   z-index: 2;
 }
 
-/* ===== BLOKADA PRZEWIJANIA DO KLIKNIĘCIA W CELOWNIK ===== */
-html:has(body.locked),
-body.locked {
-  overflow: hidden;
-  height: 100%;
+/*blokada, sekcje ukryte dopoki sie nie kliknie snajpera*/
+body.locked .stack {
+  display: none;
 }
 
-body.locked {
-  touch-action: none;           /* telefon: blokuje przewijanie palcem */
-  overscroll-behavior: none;    /* bez "odbijania" strony */
-}
 
-/* ===== SEKCJE NAKŁADAJĄCE SIĘ ===== */
+/*nakladanie sie sekcji*/
 .stack {
-  --head: 72px;                 /* wysokość paska z numerem i tytułem */
-  margin-top: 13px;
+  --head: 72px;                 /*wys paska z nr i tytulem*/
+  margin-top: 0;
 }
 
-/* paski wszystkich sekcji mogą układać się jeden pod drugim */
+/*paski sekcji jeden pod drugim*/
 .panel {
   display: contents;
 }
 
-/* pasek z numerem i tytułem – przykleja się u góry */
+/*przyklejanie sie paska*/
 .panel__head {
   position: sticky;
   top: calc(var(--i) * var(--head));
@@ -173,14 +166,14 @@ body.locked {
   letter-spacing: 0.02em;
 }
 
-/* treść sekcji – przewija się pod paskami */
+/*tresc przewija sie pod paskami*/
 .panel__body {
   background: #000;
   color: #fff;
   padding: 20px 23px 80px 133px;
 }
 
-/* ostatnia sekcja musi być na tyle wysoka, żeby jej pasek dojechał na miejsce */
+/*04 dojezdza na miejsce*/
 .panel:last-child .panel__body {
   min-height: calc(100vh - 4 * var(--head));
 }
@@ -200,7 +193,7 @@ body.locked {
   line-height: 1.6;
 }
 
-/* ===== TEKST W SEKCJACH ===== */
+/*tekst w sekcjach*/
 .panel__text {
   max-width: 620px;
 }
@@ -226,7 +219,7 @@ body.locked {
   margin-bottom: 10px;
 }
 
-/* ===== LINKI W ŹRÓDŁACH ===== */
+/*linki zrodel*/
 .sources {
   font-size: 10px;
   margin-bottom: 36px;
@@ -243,28 +236,22 @@ body.locked {
   border-bottom-color: #fff;
 }
 
-/* ===== DOSTĘPNOŚĆ: widoczne zaznaczenie przy nawigacji klawiszem Tab ===== */
+/*widoczne zaznaczenie przy TAB'ie*/
 a:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 4px;
 }
 
-/* ===== TELEFON ===== */
+/*telefon*/
 @media (max-width: 700px) {
-  body {
-    padding: 0;                 /* bez szarej ramki dookoła */
-    background: #000;
-  }
-
   .hero {
     flex-direction: column;
-    height: 100svh;             /* dokładnie cały ekran telefonu */
+    height: 100svh;             /*dokładnie cały ekran telefonu*/
     min-height: 0;
-    box-shadow: none;
   }
 
   .hero__left {
-    flex: none;                 /* czarna część tak wysoka, jak tekst */
+    flex: none;                 /*czarna czesc tak wysoka, jak tekst*/
     padding: 20px 20px 28px;
     gap: 40px;
   }
@@ -274,11 +261,7 @@ a:focus-visible {
   }
 
   .hero__right {
-    flex: 1;                    /* zdjęcie wypełnia resztę ekranu */
-  }
-
-  .stack {
-    margin-top: 0;
+    flex: 1;                    /*zdj wtypelnia reszte*/
   }
 
   .panel__head {
