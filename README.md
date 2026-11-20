@@ -68,11 +68,6 @@ flowchart LR
 4. Po zmianie statusu z *Deploying* strona jest dostępna pod
    **Distribution domain name**.
 
-### Aktualizacja treści
-1. Wgranie zmienionego pliku do S3 (**Upload**, nadpisuje stary).
-2. CloudFront → **Invalidations → Create invalidation** → Object paths: `/*`.
-3. Po statusie **Completed** zmiana jest widoczna.
-
 
 
 ## Testy i weryfikacja
