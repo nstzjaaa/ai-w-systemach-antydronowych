@@ -93,7 +93,7 @@ Nieistniejący adres zwraca kod **403 AccessDenied**.
 ![Brakujący plik](testy03.png)
 
 
-## 7. Aktualizacja treści i cache CloudFront
+## 7. Aktualizacja treści 
 1. Zmieniono tekst w `index.html` i wgrano plik do S3.
 2. Po odświeżeniu strona przez CloudFront nadal pokazywała starą wersję (przechowywanie kopii w cache).
 3. Wykonano invalidation: CloudFront → Invalidations →
